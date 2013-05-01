@@ -18,9 +18,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 COMMON_PATH := device/htc/apq8064-common
 
-# overlays
-DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
-
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
