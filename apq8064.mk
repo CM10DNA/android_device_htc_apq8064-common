@@ -46,10 +46,6 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libaudio-resampler
 
-# Bluetooth
-PRODUCT_PACKAGES += \
-    hci_qcomm_init
-
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8960
@@ -133,7 +129,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.baseband.arch=mdm \
     ro.opengles.version=131072 \
     ro.qc.sdk.audio.fluencetype=fluence \
-    ro.qualcomm.bt.hci_transport=smd \
     ro.telephony.ril_class=HTC8960RIL \
     ro.use_data_netmgrd=true \
     wifi.interface=wlan0
