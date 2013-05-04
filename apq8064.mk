@@ -54,13 +54,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.msm8960
 
-# GPS
-PRODUCT_PACKAGES += \
-    libloc_adapter \
-    libloc_eng \
-    libgps.utils \
-    gps.msm8960
-
 # Graphics
 PRODUCT_PACKAGES += \
     copybit.msm8960 \
@@ -106,10 +99,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
-
-# GPS config
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/configs/gps.conf:system/etc/gps.conf
 
 # Thermal config
 PRODUCT_COPY_FILES += \
