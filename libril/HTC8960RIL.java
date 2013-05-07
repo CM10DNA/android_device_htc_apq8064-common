@@ -65,6 +65,9 @@ public class HTC8960RIL extends QualcommSharedRIL implements CommandsInterface {
         // a new method just for naming sake.
         boolean oldRil = needsOldRilFeature("icccardstatus");
 
+        // force CDMA + LTE network type
+        boolean forceCdmaLteNetworkType = needsOldRilFeature("forceCdmaLteNetworkType");
+
         IccCardStatus cardStatus = new IccCardStatus();
         cardStatus.setCardState(p.readInt());
         cardStatus.setUniversalPinState(p.readInt());
@@ -100,9 +103,28 @@ public class HTC8960RIL extends QualcommSharedRIL implements CommandsInterface {
             appStatus.pin1_replaced  = p.readInt();
             appStatus.pin1           = appStatus.PinStateFromRILInt(p.readInt());
             appStatus.pin2           = appStatus.PinStateFromRILInt(p.readInt());
-            cardStatus.mApplications[i] = appStatus;
+             cardStatus.mApplications[i] = appStatus;
         }
+
+        // pretty hack way to do it. but keeps it out of CM telephony stack
+        if (forceCdmaLteNetworkType)
+            setPreferredNetworkType(8, null);
+
         return cardStatus;
+    }
+
+    @Override
+    public void setPreferredNetworkType(int networkType , Message response) {
+        /**
+          * If not using a USIM, ignore LTE mode and go to 3G
+          */
+        if (!mUSIM && networkType == RILConstants.NETWORK_MODE_LTE_GSM_WCDMA &&
+                 mSetPreferredNetworkType >= RILConstants.NETWORK_MODE_WCDMA_PREF) {
+            networkType = RILConstants.NETWORK_MODE_WCDMA_PREF;
+        }
+        mSetPreferredNetworkType = networkType;
+
+        super.setPreferredNetworkType(networkType, response);
     }
 
     @Override
