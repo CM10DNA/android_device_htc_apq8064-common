@@ -123,6 +123,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.baseband.arch=mdm \
     ro.opengles.version=131072 \
     ro.qc.sdk.audio.fluencetype=fluence \
-    ro.telephony.ril_class=HTC8960RIL \
+    ro.telephony.ril_class=HTC8960RIL_LEGACY \
     ro.use_data_netmgrd=true \
     wifi.interface=wlan0
